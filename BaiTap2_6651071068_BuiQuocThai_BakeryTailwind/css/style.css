@@ -1,0 +1,50 @@
+/* =====================================================
+   style.css – CSS bổ sung cho phần Tailwind chưa hỗ trợ sẵn
+   (Tailwind Play CDN không có sẵn: animation tuỳ biến,
+    scroll-padding, trạng thái aria-current của menu...)
+   ===================================================== */
+
+/* 1. Cuộn mượt khi bấm link neo (#menu-banh, #dat-banh...) và chừa chỗ cho header sticky */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+}
+
+/* 2. Màu bôi đen văn bản theo tông bánh ngọt */
+::selection {
+    background: #f59e0b;
+    color: #fff;
+}
+
+/* 3. Animation tuỳ biến cho Hero: chữ trượt vào, ảnh nổi lên (chỉ chạy 1 lần khi tải trang) */
+@keyframes rise-in {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.hero-text { animation: rise-in .7s ease-out both; }
+.hero-img  { animation: rise-in .7s ease-out .15s both; }
+
+/* 4. Link menu đang active (JS gán aria-current="true" khi cuộn tới mục tương ứng) */
+.nav-link[aria-current="true"] {
+    color: #b45309;               /* amber-700 */
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+}
+
+/* 5. Thanh cuộn mảnh, hợp tông màu trang */
+html { scrollbar-color: #d97706 #f3e1c4; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #f3e1c4; }
+::-webkit-scrollbar-thumb { background: #d97706; border-radius: 10px; }
+
+/* 6. Đổ bóng đậm hơn cho header khi người dùng đã cuộn xuống (class do JS thêm vào) */
+header.is-scrolled nav {
+    box-shadow: 0 10px 25px -8px rgba(120, 53, 15, .35);
+}
+
+/* Tôn trọng người dùng tắt hiệu ứng chuyển động */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero-text, .hero-img { animation: none; }
+}

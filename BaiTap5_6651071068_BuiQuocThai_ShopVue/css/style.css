@@ -1,0 +1,92 @@
+/* =====================================================
+   style.css – Tuỳ biến giao diện Tech Gear (đặt SAU Bootstrap)
+   ===================================================== */
+
+/* Ghi đè màu chủ đạo của Bootstrap: primary -> xanh dương đậm hơn */
+:root {
+    --bs-primary: #1565e8;
+    --bs-primary-rgb: 21, 101, 232;
+    --bs-link-color: #1565e8;
+}
+
+/* Ghi đè .btn-primary của Bootstrap (Bootstrap 5.3 dùng biến --bs-btn-*) */
+.btn-primary {
+    --bs-btn-bg: #1565e8;
+    --bs-btn-border-color: #1565e8;
+    --bs-btn-hover-bg: #0f4fc0;
+    --bs-btn-hover-border-color: #0f4fc0;
+    --bs-btn-active-bg: #0d44a5;
+    --bs-btn-active-border-color: #0d44a5;
+    --bs-btn-disabled-bg: #1565e8;
+    --bs-btn-disabled-border-color: #1565e8;
+}
+
+/* Ẩn {{ }} chưa biên dịch trước khi Vue mount (đi kèm v-cloak) */
+[v-cloak] { display: none; }
+
+body { background: #fff; color: #1b2433; }
+
+/* Header: logo chữ 2 dòng */
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: .02em;
+    font-size: 1rem;
+}
+.brand-text small { font-size: .62rem; font-weight: 500; letter-spacing: 0; color: #6b778c; }
+.site-header .nav-link { font-weight: 600; font-size: .9rem; }
+.site-header .nav-link:hover { color: var(--bs-primary); }
+.search-box { min-width: 200px; }
+
+/* Thẻ sản phẩm: ghi đè .card của Bootstrap (bo góc lớn hơn, viền nhạt, nổi lên khi hover) */
+.product-card {
+    border: 1px solid #e3e9f3;
+    border-radius: 16px;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+.product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(21, 101, 232, .15);
+}
+.product-img {
+    background: #eaf1fb;
+    border-radius: 16px 16px 0 0;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+.product-name { font-weight: 700; min-height: 2.4em; }
+
+/* Giỏ hàng (aside) */
+.cart-panel {
+    background: #f1f5fc;
+    border: 1px solid #dde6f5;
+    border-radius: 18px;
+}
+@media (min-width: 992px) {
+    .cart-panel { position: sticky; top: 90px; }
+}
+.cart-item { padding: 8px 0; border-bottom: 1px solid #dde6f5; }
+.cart-thumb { width: 44px; height: 44px; border-radius: 10px; background: #fff; object-fit: cover; }
+.cart-total { border-top: 1px solid #c9d6ee; }
+.empty-cart { padding: 14px 0; }
+.btn-remove {
+    width: 24px; height: 24px; line-height: 22px; padding: 0;
+    border: 0; border-radius: 50%;
+    background: #e5484d; color: #fff; font-size: 16px; cursor: pointer;
+}
+.btn-remove:hover { background: #c93338; }
+
+/* Banner khuyến mãi: nền gradient xanh -> tím */
+.promo-banner { background: linear-gradient(90deg, #2d7bf7, #7b4de0); }
+.promo-card { background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .3); border-radius: 14px; }
+
+/* Footer: liên kết sáng màu, nền tối do class bg-dark của Bootstrap */
+.site-footer a { color: #b9c3d6; text-decoration: none; }
+.site-footer a:hover { color: #fff; text-decoration: underline; }
+
+@media (prefers-reduced-motion: reduce) {
+    .product-card { transition: none; }
+    .product-card:hover { transform: none; }
+}
